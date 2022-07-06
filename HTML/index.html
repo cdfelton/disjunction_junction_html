@@ -20,19 +20,24 @@
 
   <!-- Add your site or application content here -->
   <div id="startScreen">
-    <p>Hello start screen</p>
-    <button type="button" onclick="goToConsent()">Go to consent Form</button>
+    <p><b>Welcome!</b> <br> You've signed up to participate in a study for the L3 Lab at UC Davis. <br> Before we can proceed, you'll need to consent to participate.</p>
+    <button type="button" onclick="goToConsent()">Proceed to Consent Form</button>
   </div>
-  <div id="consentForm" style="display: none">
-    <p>Some consent stuff</p>
+  <div id="consentForm" style="display: none; text-align:center">
+    <p>Add Informed Consent Document Here</p>
     <input type="checkbox" id="consentCheck" name="consent">
-    <label for="consentCheck">I Consent</label>
-    <button type="button" id="consentButton" onclick="startPractice()">Go to consent Form</button>
+    <label for="consentCheck">I consent to participate in the experiment</label>
+    <button type="button" id="consentButton" onclick="startPractice()">Continue</button>
   </div>
 
   <div id="practiceTestFrame" style="display: none">
+    <div id="instructions">
+      <p>In this study you'll read three similar sentences and then indicate how likely you think the situation described by each sentence is. <br>
+        You should rate very likely situations as close to 1 by dragging the slider right, and very unlikely sentences as close to zero by dragging the slider left. <br>
+      When you're satisfied with your rating, click the "Submit" button to continue to the next sentence</p>
+      </div>
     <div id="practiceTest">
-      <p id="practiceSentence">something practice</p>
+      <p id="practiceSentence">When you're ready to begin the practice trials click "Submit"</p>
     </div>
     <button id='submitPractice' onclick='submitPractice()'>Submit</button>
   </div>
