@@ -35,10 +35,15 @@
       <p>In this study you'll read three similar sentences and then indicate how likely you think the situation described by each sentence is. <br>
         You should rate very likely situations as close to 1 by dragging the slider right, and very unlikely sentences as close to zero by dragging the slider left. <br>
       When you're satisfied with your rating, click the "Submit" button to continue to the next sentence</p>
-      </div>
+    </div>
     <div id="practiceTest">
       <p id="practiceSentence">When you're ready to begin the practice trials click "Submit"</p>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="practiceRange" style="display:none">
+      </div>     
     </div>
+    
+    
     <button id='submitPractice' onclick='submitPractice()'>Submit</button>
   </div>
   <div id="realTestFrame" style="display: none">
