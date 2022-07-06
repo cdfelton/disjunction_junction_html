@@ -7,12 +7,6 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
-  <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
@@ -25,17 +19,36 @@
 <body>
 
   <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <div id="startScreen">
+    <p>Hello start screen</p>
+    <button type="button" onclick="goToConsent()">Go to consent Form</button>
+  </div>
+  <div id="consentForm" style="display: none">
+    <p>Some consent stuff</p>
+    <input type="checkbox" id="consentCheck" name="consent">
+    <label for="consentCheck">I Consent</label>
+    <button type="button" id="consentButton" onclick="startPractice()">Go to consent Form</button>
+  </div>
+
+  <div id="practiceTestFrame" style="display: none">
+    <div id="practiceTest">
+      <p id="practiceSentence">something practice</p>
+    </div>
+    <button id='submitPractice' onclick='submitPractice()'>Submit</button>
+  </div>
+  <div id="realTestFrame" style="display: none">
+    <div id="realTest">
+      <p id="realSentence">something real</p>
+    </div>
+    <button id='submitReal' style="display:none" onclick='submitReal()'>Submit</button>
+  </div>
+  <div id="completionScreen">
+
+  </div>
+
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>

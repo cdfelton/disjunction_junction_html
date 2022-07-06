@@ -1,0 +1,4 @@
+ID,Disjunct_A,Disjunct_B,Conjunction
+1,John brought pizza to the party.,John brought pasta to the party.,John brought pizza and pasta to the party.
+2,I’d like flowers.,I’d like champagne.,I’d like flowers and champagne.
+3,"If we hire Mary, everything will go well. ","If we hire Sue, everything will go well. ","If we hire Mary and Sue, everything will go well. "
