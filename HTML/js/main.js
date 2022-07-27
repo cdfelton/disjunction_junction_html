@@ -16,7 +16,7 @@ index = 0;
 length = 2;
 userResult = [];
 practiceStarted = false;
-
+var item;
 init();
 
 function Result(id, Disjunct_A, Disjunct_B, Conjunction) {
@@ -33,13 +33,13 @@ function init() {
       return results.json();
     })
     .then(data => {
-      console.log(data);
+      // console.log(data);
       stimuli = data;
-      console.log("data");
-      console.log(stimuli[0]);
+      // console.log("data");
+      // console.log(stimuli[0]);
       stimuli = shuffle(stimuli);
-      console.log("stimuli");
-      console.log(stimuli);
+      // console.log("stimuli");
+      // console.log(stimuli);
     });
   // console.log(stimuli);
   tests = formatCSV(tests);
@@ -129,7 +129,7 @@ function startReal() {
 }
 
 function populateTest() {
-  let item = stimuli.shift();
+  item = stimuli.shift();
   document.getElementById('realRowOne').innerHTML = item.Disjunct_A;
   document.getElementById('realRowTwo').innerHTML = item.Disjunct_B;
   document.getElementById('realRowThree').innerHTML = item.Conjunction;
@@ -137,7 +137,8 @@ function populateTest() {
 }
 
 function submitReal(test, message) {
-  userResult.push(new Result(index,
+  console.log(item);
+  userResult.push(new Result(item.ID,
     document.getElementById('realOne').value,
     document.getElementById('realTwo').value,
     document.getElementById('realThree').value
