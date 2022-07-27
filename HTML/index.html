@@ -40,17 +40,37 @@
       <p id="practiceSentence">When you're ready to begin the practice trials click "Submit"</p>
       <div class="slidecontainer">
         <input type="range" min="1" max="100" value="50" class="slider" id="practiceRange" style="display:none">
-      </div>     
+        <input type="range" min="1" max="100" value="50" class="slider" id="practiceRangeTwo" style="display:none">
+      </div>
     </div>
     
     
     <button id='submitPractice' onclick='submitPractice()'>Submit</button>
   </div>
+  <div id="realIntro" style="display: none">
+    <p>real thing time</p>
+    <button id='startReal' onclick='startReal()'>Start</button>
+  </div>
   <div id="realTestFrame" style="display: none">
     <div id="realTest">
       <p id="realSentence">something real</p>
+      <div>
+        <p id="realRowOne"></p>
+        <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="50" class="slider" id="realOne">
+        </div>
+        <p id="realRowTwo"></p>
+        <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="50" class="slider" id="realTwo">
+        </div>
+        <p id="realRowThree"></p>
+        <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="50" class="slider" id="realThree">
+        </div>
+      </div>
+      
     </div>
-    <button id='submitReal' style="display:none" onclick='submitReal()'>Submit</button>
+    <button id='submitReal' onclick='submitReal()'>Submit</button>
   </div>
   <div id="completionScreen">
 
