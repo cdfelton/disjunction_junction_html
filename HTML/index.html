@@ -12,67 +12,103 @@
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
 
   <!-- Add your site or application content here -->
-  <div id="startScreen">
-    <p><b>Welcome!</b> <br> You've signed up to participate in a study for the L3 Lab at UC Davis. <br> Before we can proceed, you'll need to consent to participate.</p>
-    <button type="button" onclick="goToConsent()">Proceed to Consent Form</button>
+  <div id="startScreen" class="container">
+    <p><b>Welcome!</b> <br> You've signed up to participate in a study for the L3 Lab at UC Davis. <br> Before we can
+      proceed, you'll need to consent to participate.</p>
+    <button type="button" class="btn btn-primary" onclick="goToConsent()">Proceed to Consent Form</button>
   </div>
-  <div id="consentForm" style="display: none; text-align:center">
+  <div id="consentForm" style="display: none; text-align:center" class="container">
     <p>Add Informed Consent Document Here</p>
     <input type="checkbox" id="consentCheck" name="consent">
     <label for="consentCheck">I consent to participate in the experiment</label>
-    <button type="button" id="consentButton" onclick="startPractice()">Continue</button>
+    <button type="button" class="btn btn-primary" id="consentButton" onclick="startPractice()">Continue</button>
   </div>
 
-  <div id="practiceTestFrame" style="display: none">
+  <div id="practiceTestFrame" style="display: none" class="container">
     <div id="instructions">
-      <p>In this study you'll read three similar sentences and then indicate how likely you think the situation described by each sentence is. <br>
-        You should rate very likely situations as close to 1 by dragging the slider right, and very unlikely sentences as close to zero by dragging the slider left. <br>
-      When you're satisfied with your rating, click the "Submit" button to continue to the next sentence</p>
+      <p>In this study you'll read three similar sentences and then indicate how likely you think the situation
+        described by each sentence is. <br>
+        You should rate very likely situations as close to 1 by dragging the slider right, and very unlikely sentences
+        as close to zero by dragging the slider left. <br>
+        When you're satisfied with your rating, click the "Submit" button to continue to the next sentence</p>
     </div>
     <div id="practiceTest">
       <p id="practiceSentence">When you're ready to begin the practice trials click "Submit"</p>
+      <!-- <div class="container"> -->
+      <ul class="list-group">
+        <li class="list-group-item">
+          <!-- <input type="range" min="1" max="100" value="50" class="slider" id="practiceRange" style="display:none"> -->
+          <label for="customRange1" class="form-label">Example range</label>
+          <input type="range" class="form-range" id="customRange1">
+        </li>
+        <li class="list-group-item">
+          <label for="customRange1" class="form-label">Example range</label>
+          <input type="range" class="form-range" id="customRange1">
+          <!-- <input type="range" min="1" max="100" value="50" class="slider" id="practiceRangeTwo" style="display:none"> -->
+        </li>
+        <li class="list-group-item">
+
+        </li>
+      </ul>
+
+      <!-- </div> -->
       <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="50" class="slider" id="practiceRange" style="display:none">
-        <input type="range" min="1" max="100" value="50" class="slider" id="practiceRangeTwo" style="display:none">
+
+
+
       </div>
+
     </div>
-    
-    
-    <button id='submitPractice' onclick='submitPractice()'>Submit</button>
+
+
+    <button id='submitPractice' class="btn btn-primary" onclick='submitPractice()'>Submit</button>
   </div>
-  <div id="realIntro" style="display: none">
+  <div id="realIntro" style="display: none" class="container">
     <p>real thing time</p>
-    <button id='startReal' onclick='startReal()'>Start</button>
+    <button id='startReal' class="btn btn-primary" onclick='startReal()'>Start</button>
   </div>
-  <div id="realTestFrame" style="display: none">
+  <div id="realTestFrame" style="display: none" class="container">
     <div id="realTest">
       <p id="realSentence">something real</p>
-      <div>
-        <p id="realRowOne"></p>
-        <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="50" class="slider" id="realOne">
-        </div>
-        <p id="realRowTwo"></p>
-        <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="50" class="slider" id="realTwo">
-        </div>
-        <p id="realRowThree"></p>
-        <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="50" class="slider" id="realThree">
-        </div>
-      </div>
-      
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          <p id="realRowOne"></p>
+          <label for="realOne" class="form-label" id="valOne">50</label>
+          <input type="range" class="form-range" id="realOne" oninput="set('valOne','realOne')" >
+        </li>
+        <li class="list-group-item">
+          <p id="realRowTwo"></p>
+          <label for="realTwo" class="form-label" id="valTwo">50</label>
+          <input type="range" class="form-range" id="realTwo" oninput="set('valTwo','realTwo')">
+        </li>
+        <li class="list-group-item">
+          <p id="realRowThree"></p>
+          <label for="realThree" class="form-label" id="valThree">50</label>
+          <input type="range" class="form-range" id="realThree" oninput="set('valThree','realThree')">
+        </li>
+      </ul>
+
+
+
+
+
     </div>
-    <button id='submitReal' onclick='submitReal()'>Submit</button>
+    <div class="container">
+      <button id='submitReal' class="btn btn-primary" onclick='submitReal()'>Submit</button>
+    </div>
+    
   </div>
-  <div id="completionScreen">
+  <div id="completionScreen" class="container">
 
   </div>
 

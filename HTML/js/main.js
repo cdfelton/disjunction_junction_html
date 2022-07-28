@@ -44,6 +44,11 @@ function init() {
   // console.log(stimuli);
   tests = formatCSV(tests);
   tests = shuffle(tests);
+  // document.getElementById('realOne').onchange(console.log("sometihsdklnaf"));
+}
+
+function set(target, val){
+  document.getElementById(target).innerHTML = document.getElementById(val).value;
 }
 
 function shuffle(array) {
@@ -105,9 +110,9 @@ function submitPractice(test, message) {
   }
   if (true) { // see if they have moved the slider
 
-    document.getElementById('practiceRange').style = '';
-    document.getElementById('practiceSentence').innerHTML = tests[index][1];
-    console.log(document.getElementById('practiceRange').value);
+    // document.getElementById('practiceRange').style = '';
+    // document.getElementById('practiceSentence').innerHTML = tests[index][1];
+    // console.log(document.getElementById('practiceRange').value);
     index++;
   }
   else { // ask them to move the slider
@@ -129,6 +134,12 @@ function startReal() {
 }
 
 function populateTest() {
+  document.getElementById('realOne').value = 50;
+  document.getElementById('realTwo').value = 50;
+  document.getElementById('realThree').value = 50;
+  document.getElementById('valOne').innerHTML = 50;
+  document.getElementById('valTwo').innerHTML = 50;
+  document.getElementById('valThree').innerHTML = 50;
   item = stimuli.shift();
   document.getElementById('realRowOne').innerHTML = item.Disjunct_A;
   document.getElementById('realRowTwo').innerHTML = item.Disjunct_B;
