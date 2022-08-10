@@ -78,38 +78,35 @@
   </div>
   <div id="realTestFrame" style="display: none" class="container">
     <div id="realTest">
-      <p id="realSentence">something real</p>
+      <p id="realSentence">How likely are these two sentences simultaneously true?</p>
 
       <ul class="list-group">
         <li class="list-group-item">
           <p id="realRowOne"></p>
-          <label for="realOne" class="form-label" id="valOne">50</label>
-          <input type="range" class="form-range" id="realOne" oninput="set('valOne','realOne')" >
         </li>
+
         <li class="list-group-item">
           <p id="realRowTwo"></p>
-          <label for="realTwo" class="form-label" id="valTwo">50</label>
-          <input type="range" class="form-range" id="realTwo" oninput="set('valTwo','realTwo')">
         </li>
         <li class="list-group-item">
-          <p id="realRowThree"></p>
-          <label for="realThree" class="form-label" id="valThree">50</label>
-          <input type="range" class="form-range" id="realThree" oninput="set('valThree','realThree')">
+          <label for="realOne" class="form-label" style="position:absolute;left: 20px;">Extremely unlikely</label>
+          <!-- <b for="realOne" class="form-label" id="valOne">50</b> -->
+          <label for="realOne" class="form-label">Unsure</label>
+          <label for="realOne" class="form-label" style="position:absolute;right: 20px;">Extremely likely</label>
+          <input type="range" class="form-range" id="realOne" oninput="set('valOne','realOne')">
         </li>
       </ul>
-
-
-
-
-
     </div>
     <div class="container">
       <button id='submitReal' class="btn btn-primary" onclick='submitReal()'>Submit</button>
     </div>
-    
-  </div>
-  <div id="completionScreen" class="container">
 
+  </div>
+  <div id="completionScreen" style="display:none" class="container">
+    <p>some completion stuff</p>
+  </div>
+  <div class="container" id="error" style="display:none">
+    <p id="errorMessage"></p>
   </div>
 
   <script src="js/plugins.js"></script>
