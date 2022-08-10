@@ -30,50 +30,54 @@
     <p>Add Informed Consent Document Here</p>
     <input type="checkbox" id="consentCheck" name="consent">
     <label for="consentCheck">I consent to participate in the experiment</label>
-    <button type="button" class="btn btn-primary" id="consentButton" onclick="startPractice()">Continue</button>
+    <button type="button" class="btn btn-primary" id="consentButton" onclick="goToPractice()">Continue</button>
+  </div>
+
+  <div id="practiceIntro" style="display: none" class="container">
+    <div>
+      <p>
+        In this study you'll be asked to consider two different events and rate how likely they are to both occur. The
+        key to keep in mind is that the experiment isn't asking you
+        how likely either of the events are by themselves, but instead whether they are more or less likely to both
+        happen together. You'll complete a few guided practice trials to get a
+        feel for the task and then proceed to the real experiment.
+      </p>
+    </div>
+
+
+
+    <button class="btn btn-primary" onclick='startPractice()'>Proceed</button>
   </div>
 
   <div id="practiceTestFrame" style="display: none" class="container">
-    <div id="instructions">
-      <p>In this study you'll read three similar sentences and then indicate how likely you think the situation
-        described by each sentence is. <br>
-        You should rate very likely situations as close to 1 by dragging the slider right, and very unlikely sentences
-        as close to zero by dragging the slider left. <br>
-        When you're satisfied with your rating, click the "Submit" button to continue to the next sentence</p>
-    </div>
     <div id="practiceTest">
-      <p id="practiceSentence">When you're ready to begin the practice trials click "Submit"</p>
-      <!-- <div class="container"> -->
+      <p id="pracSentence">How likely are these two sentences simultaneously true?</p>
+
       <ul class="list-group">
         <li class="list-group-item">
-          <!-- <input type="range" min="1" max="100" value="50" class="slider" id="practiceRange" style="display:none"> -->
-          <label for="customRange1" class="form-label">Example range</label>
-          <input type="range" class="form-range" id="customRange1">
+          <p id="pracRowOne">something</p>
         </li>
-        <li class="list-group-item">
-          <label for="customRange1" class="form-label">Example range</label>
-          <input type="range" class="form-range" id="customRange1">
-          <!-- <input type="range" min="1" max="100" value="50" class="slider" id="practiceRangeTwo" style="display:none"> -->
-        </li>
-        <li class="list-group-item">
 
+        <li class="list-group-item">
+          <p id="pracRowTwo">something</p>
+        </li>
+        <li class="list-group-item">
+          <label for="pracOne" class="form-label" style="position:absolute;left: 20px;">Extremely unlikely</label>
+          <!-- <b for="realOne" class="form-label" id="valOne">50</b> -->
+          <label for="pracOne" class="form-label"></label>
+          <label for="pracOne" class="form-label" style="position:absolute;right: 20px;">Extremely likely</label>
+          <input type="range" class="form-range" id="pracOne" oninput="set('pracOne','pracOne')">
         </li>
       </ul>
-
-      <!-- </div> -->
-      <div class="slidecontainer">
-
-
-
-      </div>
-
     </div>
-
-
-    <button id='submitPractice' class="btn btn-primary" onclick='submitPractice()'>Submit</button>
+    <div class="container">
+      <button id='submitPractice' class="btn btn-primary" onclick='submitPractice()'>Submit</button>
+      <button id='showNextPractice' class="btn btn-primary" onclick='showNextPractice()' style="display: none">Continue</button>
+    </div>
   </div>
+
   <div id="realIntro" style="display: none" class="container">
-    <p>real thing time</p>
+    <p>When you are ready to begin the real experiment, click start</p>
     <button id='startReal' class="btn btn-primary" onclick='startReal()'>Start</button>
   </div>
   <div id="realTestFrame" style="display: none" class="container">
@@ -91,7 +95,7 @@
         <li class="list-group-item">
           <label for="realOne" class="form-label" style="position:absolute;left: 20px;">Extremely unlikely</label>
           <!-- <b for="realOne" class="form-label" id="valOne">50</b> -->
-          <label for="realOne" class="form-label">Unsure</label>
+          <label for="realOne" class="form-label"></label>
           <label for="realOne" class="form-label" style="position:absolute;right: 20px;">Extremely likely</label>
           <input type="range" class="form-range" id="realOne" oninput="set('valOne','realOne')">
         </li>

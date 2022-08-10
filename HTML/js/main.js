@@ -1,22 +1,14 @@
 
-let tests = ["ID", "Disjunct_A", "Disjunct_B", "Conjunction",
-  1, "John brought pizza to the party.", "John brought pasta to the party.", "John brought pizza and pasta to the party.",
-  2, "I’d like flowers.", "I’d like champagne.", "I’d like flowers and champagne.",
-  3, "If we hire Mary, everything will go well. ", "If we hire Sue, everything will go well. ", "If we hire Mary and Sue, everything will go well."];
+let practiceTests = [
+  { A: "Joaquin is a world class fencer.", B: "Joaquin fenced in the olympics.", Explanation: "joaquin is cool" },
+  { A: "Mike is terrible at bowling.", B: "Mike got four strikes in a row.", Explanation: "mike is not cool" },
+  { A: "There was thunder.", B: "There was lightning.", Explanation: "Thor makes lightinnnnnnng and thunder :)" },
+  { A: "David is a bachelor.", B: "David is married.", Explanation: "David is not funny" }
+]
 
-// fetch('https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/22b7d150b8888479c735b9e42fed379ecec7e2c1/stimuli.json')
-//   .then(results => {
-//     return results.json();
-//   })
-//   .then(data => {
-//     stimuli = data;
-// });
 let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/a7e061fc587c8d3bbfebf21368500cb39d599222/stimuli.json';
 let stimuli;
-index = 0;
-length = 2;
 userResult = [];
-practiceStarted = false;
 let sliderMoved = false;
 var item;
 
@@ -36,9 +28,9 @@ function init() {
     .then(data => {
       stimuli = data;
       stimuli = shuffle(stimuli);
+      console.log(stimuli)
     });
-  // tests = formatCSV(tests);
-  // tests = shuffle(tests);
+
 }
 
 function set(target, val) {
@@ -60,23 +52,7 @@ function shuffle(array) {
   return array;
 }
 
-// function formatCSV(list) {
-//   list.splice(0, 4);
-//   newList = [];
-//   element = [];
-//   counter = 0;
-//   for (let i = 0; i <= list.length; i++) {
-//     if (counter == 4) {
-//       counter = 0;
-//       newList.push(element);
-//       element = [];
-//     }
-//     element.push(list[i]);
-//     counter++;
-//   }
-//   console.log(newList);
-//   return newList;
-// }
+
 function clearError() {
   document.getElementById('error').style = 'display:none';
 }
@@ -88,35 +64,54 @@ function goToConsent() {
   document.getElementById('startScreen').style = 'display:none';
   document.getElementById('consentForm').style = '';
 }
-function startPractice() {
+function goToPractice() {
   if (document.getElementById('consentCheck').checked) {
     document.getElementById('consentForm').style = 'display:none';
-    document.getElementById('practiceTestFrame').style = '';
+    document.getElementById('practiceIntro').style = '';
     clearError();
-    practiceStarted = true;
   }
   else {
     setError("Please check the consent form to proceed to the experiment");
     // Show some error thing asking them to check consent form
   }
 }
+function startPractice() {
+  document.getElementById('practiceIntro').style = 'display:none';
+  document.getElementById('practiceTestFrame').style = '';
+  clearError();
+  item = practiceTests.shift();
+  document.getElementById('pracRowOne').innerHTML = item.A;
+  document.getElementById('pracRowTwo').innerHTML = item.B;
 
-function submitPractice(test, message) {
-  console.log("pracc sub");
-  if (index >= length) {
-    endPractice();
-  }
-  if (true) { // see if they have moved the slider
 
-    // document.getElementById('practiceRange').style = '';
-    // document.getElementById('practiceSentence').innerHTML = tests[index][1];
-    // console.log(document.getElementById('practiceRange').value);
-    index++;
-    clearError();
-  }
-  else { // ask them to move the slider
+}
 
+function submitPractice() {
+
+
+
+  if (!sliderMoved) {
+    setError("Please move the slider");
   }
+  else {
+
+    document.getElementById('submitPractice').style = 'display:none';
+    document.getElementById('showNextPractice').style = '';
+    setError(item.Explanation);
+  }
+}
+function showNextPractice() {
+  clearError();
+  if (practiceTests.length == 0) {
+    return endPractice();
+  }
+  document.getElementById('submitPractice').style = '';
+  document.getElementById('showNextPractice').style = 'display:none';
+  document.getElementById('pracOne').value = 50;
+  sliderMoved = false;
+  item = practiceTests.shift();
+  document.getElementById('pracRowOne').innerHTML = item.A;
+  document.getElementById('pracRowTwo').innerHTML = item.B;
 }
 
 function endPractice() {
@@ -126,7 +121,6 @@ function endPractice() {
 }
 
 function startReal() {
-  index = 0;
 
   document.getElementById('realIntro').style = 'display:none';
   document.getElementById('realTestFrame').style = '';
@@ -158,12 +152,8 @@ function submitReal() {
         document.getElementById('realOne').value
       ));
       console.log(userResult);
-      // index++;
       populateTest();
       clearError();
     }
-
-
   }
-
 }
