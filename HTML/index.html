@@ -40,7 +40,12 @@
         key to keep in mind is that the experiment isn't asking you
         how likely either of the events are by themselves, but instead whether they are more or less likely to both
         happen together. You'll complete a few guided practice trials to get a
-        feel for the task and then proceed to the real experiment.
+        feel for the task and then proceed to the real experiment. <br>
+        During each trial you will be presented with 2 sentences and a slider that ranges from zero to one.
+        You will move the slider to indicate how likely you think the events described in the two sentences are to occur together. <br>
+        Rating a trial "0" indicates that it is impossible for the sentences to occur together, while rating a trial "1" indicates that the two events MUST occur together.
+        Putting the slider in the middle indicates that the events are equally likely to occur together or separately. <br>
+        When you're satisfied with your rating, you can click the submit button to move on to the next item.
       </p>
     </div>
 
@@ -62,10 +67,10 @@
           <p id="pracRowTwo">something</p>
         </li>
         <li class="list-group-item">
-          <label for="pracOne" class="form-label" style="position:absolute;left: 20px;">Extremely unlikely</label>
+          <label for="pracOne" class="form-label" style="position:absolute;left: 20px;">0</label>
           <!-- <b for="realOne" class="form-label" id="valOne">50</b> -->
           <label for="pracOne" class="form-label"></label>
-          <label for="pracOne" class="form-label" style="position:absolute;right: 20px;">Extremely likely</label>
+          <label for="pracOne" class="form-label" style="position:absolute;right: 20px;">1</label>
           <input type="range" class="form-range" id="pracOne" oninput="set('pracOne','pracOne')">
         </li>
       </ul>
@@ -93,10 +98,10 @@
           <p id="realRowTwo"></p>
         </li>
         <li class="list-group-item">
-          <label for="realOne" class="form-label" style="position:absolute;left: 20px;">Extremely unlikely</label>
+          <label for="realOne" class="form-label" style="position:absolute;left: 20px;">0</label>
           <!-- <b for="realOne" class="form-label" id="valOne">50</b> -->
           <label for="realOne" class="form-label"></label>
-          <label for="realOne" class="form-label" style="position:absolute;right: 20px;">Extremely likely</label>
+          <label for="realOne" class="form-label" style="position:absolute;right: 20px;">1</label>
           <input type="range" class="form-range" id="realOne" oninput="set('valOne','realOne')">
         </li>
       </ul>

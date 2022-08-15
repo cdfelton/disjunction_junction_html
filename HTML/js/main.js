@@ -1,12 +1,14 @@
 
 let practiceTests = [
-  { A: "Joaquin is a world class fencer.", B: "Joaquin fenced in the olympics.", Explanation: "joaquin is cool" },
-  { A: "Mike is terrible at bowling.", B: "Mike got four strikes in a row.", Explanation: "mike is not cool" },
-  { A: "There was thunder.", B: "There was lightning.", Explanation: "Thor makes lightinnnnnnng and thunder :)" },
-  { A: "David is a bachelor.", B: "David is married.", Explanation: "David is not funny" }
+  { A: "Joaquin is a world class fencer.", B: "Joaquin fenced in the olympics.", Explanation: "In this example, while any given individual is unlikely to be either an olympian or a world class athlete, it is pretty likely for someone who is a world class athlete to go to the olympics and vice versa. The best answer is somewhere in the middle of the right side of the slider." },
+  { A: "Mike is terrible at bowling.", B: "Mike got four strikes in a row.", Explanation: "While plenty of people have bowled four strikes in a row, it is pretty unlikely for someone who is a terrible bowler to do so. The best answer is in the middle of the left side of the slider." },
+  { A: "Felix is a pianist.", B: "Casey enjoys video games.", Explanation: "There isn't really any clear relationship between these sentences. The correct answer is somewhere near the middle of the slider. (You can even put it right in the middle if you want, just move the slider back to the center after dragging it a bit!)"},
+  { A: "There was thunder.", B: "There was lightning.", Explanation: "Depending on where you live, thunder and lightning might be rare, but they are very likely to occur together when they happen. The best answer is all the way at the far right end of the slider." },
+  { A: "Masoud and Santiago play football together.", B: "John and Jack went shopping for new guitars.", Explanation: "It's hard to tell what relationship, if any, there is between these sentences. The best answer is somewhere near the middle of the slider."},
+  { A: "David is a bachelor.", B: "David is married.", Explanation: "It's impossible for David to be both married and a bachelor! The best answer is all the way at the far left end of the slider." }
 ]
 
-let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/a7e061fc587c8d3bbfebf21368500cb39d599222/stimuli.json';
+let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/9df3d300167c407dfa24df7c1343eaa920cc9770/stimuli.json';
 let stimuli;
 userResult = [];
 let sliderMoved = false;
