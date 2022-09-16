@@ -145,6 +145,7 @@ function populateTest() {
 
 function submitReal() {
   if (stimuli.length == 0) { // check to see if we are out of stimuli
+    console.log(userResult)
     document.getElementById('completionScreen').style = '';
     document.getElementById('realTestFrame').style = 'display:none';
   }
