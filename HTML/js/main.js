@@ -146,6 +146,8 @@ function populateTest() {
 function submitReal() {
   if (stimuli.length == 0) { // check to see if we are out of stimuli
     console.log(userResult)
+    console.log(JSON.stringify(userResult))
+    proliferate.submit(JSON.stringify(userResult))
     document.getElementById('completionScreen').style = '';
     document.getElementById('realTestFrame').style = 'display:none';
   }
