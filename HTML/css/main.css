@@ -14,8 +14,20 @@
 * {
   text-align: center;
 }
-.container{
-  padding: 10px;
+:root{
+  --labelOffset: 105px;
+}
+.sliderBox{
+  width: 80%; 
+  margin: auto;
+}
+.zeroLabel{
+  position: absolute;
+  left: var(--labelOffset);
+}
+.oneLabel{
+  position: absolute;
+  right: var(--labelOffset);
 }
 html {
   color: #222;

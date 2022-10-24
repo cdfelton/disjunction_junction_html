@@ -17,6 +17,7 @@ let stimuli;
 userResult = [];
 let sliderMoved = false;
 var item;
+let originalLength;
 
 init();
 
@@ -34,6 +35,7 @@ function init() {
     .then(data => {
       stimuli = data;
       stimuli = shuffle(stimuli);
+      originalLength = stimuli.length;
       console.log(stimuli)
     });
 
@@ -156,6 +158,7 @@ function submitReal() {
       setError("Please move the slider");
     }
     else {
+      document.getElementById('progressbar').style.width = (originalLength - stimuli.length) + "%";
       console.log(item);
       userResult.push(new Result(item.ID,
         document.getElementById('realOne').value
