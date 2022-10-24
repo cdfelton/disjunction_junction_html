@@ -12,7 +12,7 @@ let practiceTests = [
   { A: "David is a bachelor.", B: "David is married.", Explanation: "It's impossible for David to be both married and a bachelor! The best answer is all the way at the far left end of the slider." }
 ]
 
-let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/9df3d300167c407dfa24df7c1343eaa920cc9770/stimuli.json';
+let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/990392e944879ce807e6966fe40c9fa1943ea76a/stimuli.json';
 let stimuli;
 userResult = [];
 let sliderMoved = false;
@@ -147,8 +147,7 @@ function submitReal() {
   if (stimuli.length == 0) { // check to see if we are out of stimuli
     console.log(userResult)
     console.log(JSON.stringify(userResult))
-    let data = JSON.stringify(userResult)
-    proliferate.submit({"trials": data})
+    proliferate.submit({"trials": userResult})
     document.getElementById('completionScreen').style = '';
     document.getElementById('realTestFrame').style = 'display:none';
   }
