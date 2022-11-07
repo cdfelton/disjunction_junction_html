@@ -24,12 +24,12 @@
 
   <!-- Add your site or application content here -->
   <div id="startScreen" class="container">
-    <p><b>Welcome!</b> <br> You've signed up to participate in a study for the L3 Lab at UC Davis. <br> Before we can
+    <p><br><b>Welcome!</b> <br> You've signed up to participate in a study for the L3 Lab at UC Davis. <br> Before we can
       proceed, you'll need to consent to participate.</p>
     <button type="button" class="btn btn-primary" onclick="goToConsent()">Proceed to Consent Form</button>
   </div>
   <div id="consentForm" style="display: none; text-align:center" class="container">
-    <p><b>Letter of Information</b><br><br>
+    <p><br><b>Letter of Information</b><br><br>
       <b>Title of study:</b> Language Understanding, Comprehension, and Learning in Adults <br>
       <b>Investigator:</b> Masoud Jasbi, Ph.D., Assistant Professor of Linguistics, UC Davis <br><br>
       <b>Introduction and Purpose </b><br>
@@ -54,16 +54,16 @@
 
   <div id="practiceIntro" style="display: none" class="container">
     <div>
-      <p>
-        In this study you'll be asked to consider two sentences and rate how likely they are to both be true at the same time.
-        The key to keep in mind is that the experiment isn't asking you how likely either of the sentences are to be true themselves,
-        but instead whether they are more or less likely to both be true together if one is true.<br><br>
+      <p> <br>
+        In this study you'll be asked to consider two sentences and then answer a question about the possible circumstances/situations the sentences discuss.
+        These questions will ask you to rate the likelihood of two events/statements discussed in the sentences both happening/being true together.
         You'll complete a few guided practice trials to get a feel for the task and then proceed to the real experiment. <br><br>
-        During each trial you will be presented with 2 sentences and a slider that ranges from zero to one.
-        You will move the slider to indicate how likely you think the situations described in the two sentences are to occur together (both be true).
-        Rating a trial <b>"0"</b> indicates that it is impossible for the sentences to both be true, while rating a trial <b>"1"</b> indicates that if one is true the other MUST also be true.
-        Putting the slider in the middle indicates that the situations described are equally likely to occur together or separately. <br><br>
-        When you're satisfied with your rating, you can click the submit button to move on to the next item.
+        During each trial you will be presented with a slider that ranges from zero percent to one hundred percent.
+        You will move the slider to indicate how likely you think the situation described in the question is using your world knowledge.
+        When you're satisfied with your rating, you can click the submit button to move on to the next item.<br><br>
+        Rating a trial <b>"0%"</b> indicates that it is impossible for both things to happen/be true together, while rating a trial <b>"100%"</b> indicates that the two things must happen/be true together.
+        Putting the slider in the middle indicates that it is equally likely for them to both happen/be true together or for them to happen/be true separately.
+        There will be explanations during the practice trials to help make this clear. <br>
       </p>
     </div>
 
@@ -74,7 +74,7 @@
 
   <div id="practiceTestFrame" style="display: none" class="container">
     <div id="practiceTest">
-      <p id="pracSentence">How likely are these two sentences simultaneously true?</p>
+      <p id="pracSentence">Please read the two sentences and then respond to the question.</p>
 
       <ul class="list-group">
         <li class="list-group-item">
@@ -85,11 +85,14 @@
           <p id="pracRowTwo">something</p>
         </li>
         <li class="list-group-item">
+          <p id="pracRowThree">something</p>
+        </li>
+        <li class="list-group-item">
           <div class="sliderBox">
-          <label for="pracOne" class="form-label zeroLabel" >0</label>
+          <label for="pracOne" class="form-label zeroLabel" >0%</label>
           <!-- <b for="realOne" class="form-label" id="valOne">50</b> -->
           <label for="pracOne" class="form-label" style="...">|</label>
-          <label for="pracOne" class="form-label oneLabel">1</label>
+          <label for="pracOne" class="form-label oneLabel">100%</label>
           <input type="range" class="form-range" id="pracOne" oninput="set('pracOne','pracOne')">
         </div>
         </li>
@@ -102,7 +105,7 @@
   </div>
 
   <div id="realIntro" style="display: none" class="container">
-    <p>When you are ready to begin the real experiment, click start</p>
+    <p><br>When you are ready to begin the real experiment, click start</p>
     <button id='startReal' class="btn btn-primary" onclick='startReal()'>Start</button>
   </div>
   <div id="realTestFrame" style="display: none" class="container">
@@ -112,7 +115,7 @@
       </div>
     </div>
     <div id="realTest">
-      <p id="realSentence">How likely are these two sentences simultaneously true?</p>
+      <p id="realSentence">Please read the two sentences and then respond to the question.</p>
 
       <ul class="list-group">
         <li class="list-group-item">
@@ -123,11 +126,14 @@
           <p id="realRowTwo"></p>
         </li>
         <li class="list-group-item">
+          <p id="realRowThree"></p>
+        </li>
+        <li class="list-group-item">
           <div class="sliderBox">
-            <label for="realOne" class="form-label zeroLabel" >0</label>
+            <label for="realOne" class="form-label zeroLabel" >0%</label>
             <!-- <b for="realOne" class="form-label" id="valOne">50</b> -->
             <label for="realOne" class="form-label">|</label>
-            <label for="realOne" class="form-label oneLabel">1</label>
+            <label for="realOne" class="form-label oneLabel">100%</label>
             <input type="range" class="form-range" id="realOne" oninput="set('valOne','realOne')">
           </div>
         </li>
