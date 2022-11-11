@@ -5,14 +5,14 @@ let practiceTests = [
   { A: "My favorite color is a primary color.", B: "My favorite color is yellow, red, or blue.", C:"How likely is it that my favorite color both is a primary color and is yellow, red, or blue?" , Explanation: "Since yellow red and blue are the only primary colors, the correct answer here is all the way at the right end of the slider, since these two sentences must both be true if one is true."},
   { A: "Mike is terrible at bowling.", B: "Mike got four strikes in a row.", C:'How likely is it that someone is both terrible at bowling and got four strikes in a row?', Explanation: "While plenty of people have bowled four strikes in a row, it is pretty unlikely for someone who is a terrible bowler to do so. The best answer is in the middle of the left side of the slider." },
   { A: "Felix is a pianist.", B: "Casey enjoys video games.", C:'How likely is it that Felix is a pianist and Casey enjoys video games?', Explanation: "There isn't really any clear relationship between someone being a pianist and another person enjoying video games. The correct answer is somewhere near the middle of the slider. (You can even put it right in the middle if you want, just move the slider back to the center after dragging it a bit!)"},
-  { A: "Joseph turned the key in the car ignition.", B: "The car turned on.", C:'How likely is it that someone both turned they key in the car ignition and the key turned?', Explanation: "The correct answer here is somewhere in the middle of the right half of the slider, as these two events usually co-occur, but don't always (maybe the car is out of gas, or doesn't require a key)."},
+  { A: "Joseph turned the key in the car ignition.", B: "The car turned on.", C:'How likely is it that someone both turned the key in the car ignition and the car turned on?', Explanation: "The correct answer here is somewhere in the middle of the right half of the slider, as these two events usually co-occur, but don't always (maybe the car is out of gas, or doesn't require a key)."},
   { A: "There was thunder.", B: "There was lightning.", C:'How likely is it that there was both thunder and lightning?', Explanation: "Depending on where you live, thunder and lightning might be rare, but they are very likely to occur together when they happen. The best answer is all the way at the far right end of the slider." },
   { A: "Ken was unhappy with the restaurant's service.", B: "Ken left a large tip.", C:"How likely is it that someone was both unhappy with a restaurant's service and left a large tip?", Explanation: "The correct answer here is somewhere in the middle of the left half of the slider, since Ken is unlikely to tip well if the service was bad, but might decide to anyway if he felt generous."},
   { A: "Masoud and Santiago play football together.", B: "John and Jack went shopping for new guitars.", C:'How likely is it that two people play football together and two other people went shopping for new guitars?', Explanation: "It's hard to tell what relationship, if any, there is between these two things. The best answer is somewhere near the middle of the slider."},
   { A: "David is a bachelor.", B: "David is married.", C:'How likely is it that someone is both a bachelor and married?', Explanation: "It's impossible to be both married and a bachelor! The best answer is all the way at the far left end of the slider." }
 ]
 
-let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/beb88d310503cb3310b5655223aee5f38e5d403f/stimuli.json';
+let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/d01409ace6f2fab9b7a13fefb0deb4cd472f36c9/stimuli.json';
 let stimuli;
 userResult = [];
 let sliderMoved = false;
@@ -150,6 +150,9 @@ function populateTest() {
 
 function submitReal() {
   if (stimuli.length == 0) { // check to see if we are out of stimuli
+    userResult.push(new Result(item.ID,
+      document.getElementById('realOne').value
+    ));
     console.log(userResult)
     console.log(JSON.stringify(userResult))
     proliferate.submit({"trials": userResult})
@@ -161,7 +164,7 @@ function submitReal() {
       setError("Please move the slider");
     }
     else {
-      document.getElementById('progressbar').style.width = (originalLength - stimuli.length) + "%";
+      document.getElementById('progressbar').style.width = 100*(originalLength - stimuli.length)/originalLength + "%";
       console.log(item);
       userResult.push(new Result(item.ID,
         document.getElementById('realOne').value
