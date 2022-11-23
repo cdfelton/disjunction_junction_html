@@ -1,0 +1,69 @@
+---
+title: "Disjunction Junction"
+output: html_document
+date: '2022-10-11'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Load required libraries
+```{r, include= FALSE}
+library('tidyverse')
+library('ggplot2')
+```
+
+### Read in and join raw data with the key
+```{r}
+# Reads in data file
+data = read.csv('../Disjunction_Junction/Data&Resources/test_data.csv')
+
+# Factorizes and renames id column
+data = data %>% 
+  mutate(ID = as.factor(id))
+
+# Select just the columns needed for analysis
+data = data %>% select(workerid, ID, chance)
+
+# Reads in key file
+key = read.csv('../Disjunction_Junction/Data&Resources/disjunction_junction_key.csv')
+
+# Factorizes IS column
+key$ID = as_factor(key$ID)
+
+# Joins key and data
+data = left_join(data, key, by = 'ID')
+```
+# Overview of Analysis
+### In the first phase of this experiment, we have 2 main hypothesis to test. 1. Whether participants rate the sets of disjuncts as more or less likely to occur together. 2. If this is the case, whether the direction of this bias match the literature's prediction of inclusive or exlcusive bias for the overall disjunction. 
+
+# Hypothesis 1
+### The following code aggregates group means, standard deviations, and standard errors for each item
+```{r}
+means = data %>% 
+  group_by(ID) %>% 
+  summarise(Mean_Chance = mean(chance),
+            Standard_Deviation = sd(chance),
+            Standard_Error = Standard_Deviation/sqrt(length(unique(data$workerid))))
+print(means)
+```
+
+
+### The code below creates a box and whisker plot for each of the items
+```{r, echo=FALSE}
+g = ggplot(data, aes(ID, chance))
+g + geom_boxplot() + labs(title = 'Means and Variation by Item', x = 'Items (1-71)', y = 'Chance (%)')+
+  geom_dotplot(binaxis='y', 
+               stackdir='center', 
+               dotsize = .5,
+               binwidth = 3,
+               fill="red") +
+               theme_bw() +
+               theme(axis.text.x = element_blank())
+```
+
+```{r}
+
+```
+

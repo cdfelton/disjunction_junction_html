@@ -1,10 +1,10 @@
 
 let practiceTests = [
   { A: "Mike hates all types of fruit.", B: "Mike's favorite food is watermelon.", C:'How likely is it that someone both hates all fruit and has watermelon as their favorite food?', Explanation: "Since it's impossible to hate all fruit and have watermelon be your favorite food, the correct answer here is all the way at the left end of the slider."},
-  { A: "Joaquin is a world class fencer.", B: "Joaquin fenced in the olympics.", C:'How likely is it that someone is both a world class fencer and fenced in the olympics?', Explanation: "In this example, while any given individual is unlikely to be either an olympian or a world class athlete, it is pretty likely for someone who is a world class athlete to go to the olympics and vice versa. The best answer is somewhere in the middle of the right side of the slider." },
+  { A: "Joaquin is a world class basketball player.", B: "Joaquin plays in the NBA.", C:'How likely is it that someone is both a world class basketball player and plays in the NBA?', Explanation: "In this example, while any given individual is unlikely to be either an NBA player or a world class athlete, it is pretty likely (but not required) for someone who is a world class basketball player to play in the NBA and vice versa. The best answer is somewhere in the middle of the right side of the slider." },
   { A: "My favorite color is a primary color.", B: "My favorite color is yellow, red, or blue.", C:"How likely is it that my favorite color both is a primary color and is yellow, red, or blue?" , Explanation: "Since yellow red and blue are the only primary colors, the correct answer here is all the way at the right end of the slider, since these two sentences must both be true if one is true."},
   { A: "Mike is terrible at bowling.", B: "Mike got four strikes in a row.", C:'How likely is it that someone is both terrible at bowling and got four strikes in a row?', Explanation: "While plenty of people have bowled four strikes in a row, it is pretty unlikely for someone who is a terrible bowler to do so. The best answer is in the middle of the left side of the slider." },
-  { A: "Felix is a pianist.", B: "Casey enjoys video games.", C:'How likely is it that Felix is a pianist and Casey enjoys video games?', Explanation: "There isn't really any clear relationship between someone being a pianist and another person enjoying video games. The correct answer is somewhere near the middle of the slider. (You can even put it right in the middle if you want, just move the slider back to the center after dragging it a bit!)"},
+  { A: "Felix is a pianist.", B: "Casey enjoys video games.", C:'How likely is it that someone is a pianist and someone else enjoys video games?', Explanation: "There isn't really any clear relationship between someone being a pianist and another person enjoying video games. The correct answer is somewhere near the middle of the slider. (You can even put it right in the middle if you want, just move the slider back to the center after dragging it a bit!)"},
   { A: "Joseph turned the key in the car ignition.", B: "The car turned on.", C:'How likely is it that someone both turned the key in the car ignition and the car turned on?', Explanation: "The correct answer here is somewhere in the middle of the right half of the slider, as these two events usually co-occur, but don't always (maybe the car is out of gas, or doesn't require a key)."},
   { A: "There was thunder.", B: "There was lightning.", C:'How likely is it that there was both thunder and lightning?', Explanation: "Depending on where you live, thunder and lightning might be rare, but they are very likely to occur together when they happen. The best answer is all the way at the far right end of the slider." },
   { A: "Ken was unhappy with the restaurant's service.", B: "Ken left a large tip.", C:"How likely is it that someone was both unhappy with a restaurant's service and left a large tip?", Explanation: "The correct answer here is somewhere in the middle of the left half of the slider, since Ken is unlikely to tip well if the service was bad, but might decide to anyway if he felt generous."},
@@ -12,7 +12,7 @@ let practiceTests = [
   { A: "David is a bachelor.", B: "David is married.", C:'How likely is it that someone is both a bachelor and married?', Explanation: "It's impossible to be both married and a bachelor! The best answer is all the way at the far left end of the slider." }
 ]
 
-let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/d01409ace6f2fab9b7a13fefb0deb4cd472f36c9/stimuli.json';
+let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/02730d9ba61fbcfd05c1ce4df6659c2b04a90c5a/stimuli.json';
 let stimuli;
 userResult = [];
 let sliderMoved = false;
@@ -79,7 +79,7 @@ function goToPractice() {
     clearError();
   }
   else {
-    setError("Please check the consent form to proceed to the experiment");
+    setError("Please check the consent box to proceed to the experiment");
     // Show some error thing asking them to check consent form
   }
 }
