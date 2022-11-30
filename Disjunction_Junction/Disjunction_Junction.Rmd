@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, include= FALSE}
 library('tidyverse')
 library('ggplot2')
+library('lme4')
 ```
 
 ### Read in and join raw data with the key
@@ -35,8 +36,34 @@ key$ID = as_factor(key$ID)
 # Joins key and data
 data = left_join(data, key, by = 'ID')
 ```
+
+# Data Cleaning
+### There are a total of 6 attention checking control items, each of which should result in either close to 0% or close to 100% chance ratings from participants who were paying attention. The following code block excludes participants who did not rate at least 5 out of the 6 control items as within 10% of either 0% or 100%, whichever was accurate. 
+```{r}
+#Filter just the 100% control items
+cntr_100 = data %>% filter(ID == 48 | ID == 49 | ID == 50)
+#Filter just the 0% control items
+cntr_0 = data %>% filter(ID == 51 | ID == 52 | ID == 53)
+
+#Adds a column for accuracy
+cntr_100$correct = cntr_100$chance >= 90
+cntr_0$correct = cntr_0$chance <= 10
+
+#Combines the items
+accuracy_check = rbind(cntr_0, cntr_100)
+
+#Creates a table with the aggregated mean accuracy for each participant
+accuracy_table = accuracy_check %>% group_by(workerid) %>% summarise(mean_accuracy = mean(correct))
+
+#Join the accuracy table to the rest of the data
+data = left_join(data, accuracy_table, by = 'workerid')
+
+#Filter out participants who got less than 5/6 correct
+data = data %>% filter(mean_accuracy > .8)
+```
+
 # Overview of Analysis
-### In the first phase of this experiment, we have 2 main hypothesis to test. 1. Whether participants rate the sets of disjuncts as more or less likely to occur together. 2. If this is the case, whether the direction of this bias match the literature's prediction of inclusive or exlcusive bias for the overall disjunction. 
+### In the first phase of this experiment, we have 2 main hypothesis to test. 1. Whether participants rate the likelihood that the two disjuncts co-occur as either more or less likely than the baseline of "the two events are equally likely to co-occur or to occur separately". 2. Whether the direction of the bias in ratings matches the literature's prediction of inclusive or exlcusive bias for the overall disjunction. 
 
 # Hypothesis 1
 ### The following code aggregates group means, standard deviations, and standard errors for each item
@@ -53,7 +80,7 @@ print(means)
 ### The code below creates a box and whisker plot for each of the items
 ```{r, echo=FALSE}
 g = ggplot(data, aes(ID, chance))
-g + geom_boxplot() + labs(title = 'Means and Variation by Item', x = 'Items (1-71)', y = 'Chance (%)')+
+g + geom_boxplot() + labs(title = 'Means and Variation by Item', x = 'Items (1-53)', y = 'Chance (%)')+
   geom_dotplot(binaxis='y', 
                stackdir='center', 
                dotsize = .5,
@@ -63,7 +90,21 @@ g + geom_boxplot() + labs(title = 'Means and Variation by Item', x = 'Items (1-7
                theme(axis.text.x = element_blank())
 ```
 
+### The next section uses a linear model to test the second hypothesis
 ```{r}
+# Filter out items with no recorded bias claim
+model_data = data %>% filter(Claimed.Bias == 'Exclusive Biased' | Claimed.Bias == 'Inclusive Biased')
+
+# transform column into factor
+model_data$Claimed.Bias = as_factor(model_data$Claimed.Bias)
+
+# An exploratory basic lm()
+model_0 = lm(chance ~ Claimed.Bias, data = model_data)
+summary(model_0)
+
+# A more robust linear mixed effects regression
+model_1 = lmer(chance ~ ID + Claimed.Bias + (1 | workerid), data = model_data)
+summary(model_1)
 
 ```
 
