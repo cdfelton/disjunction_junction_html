@@ -12,7 +12,7 @@ let practiceTests = [
   { A: "David is a bachelor.", B: "David is married.", C:'How likely is it that someone is both a bachelor and married?', Explanation: "It's impossible to be both married and a bachelor! The best answer is all the way at the far left end of the slider." }
 ]
 
-let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/3e13e2a926dc2988d2c3c366496bc0c36685069d/stimuli.json';
+let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/29146ad08f5e45f8283fc9331afb61a6/raw/f404220b4a9d5408816b14a48d340e884d65271f/stimuli.json';
 let stimuli;
 userResult = [];
 let sliderMoved = false;

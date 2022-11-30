@@ -18,7 +18,7 @@ library('lme4')
 ### Read in and join raw data with the key
 ```{r}
 # Reads in data file
-data = read.csv('../Disjunction_Junction/Data&Resources/test_data.csv')
+data = read.csv('../Disjunction_Junction/Data&Resources/test_data_2.csv')
 
 # Factorizes and renames id column
 data = data %>% 

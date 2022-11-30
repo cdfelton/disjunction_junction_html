@@ -16,7 +16,7 @@ ID,Disjunct_A,Disjunct_B,Question,Group,Claimed Bias,Notes
 15,An applicant should have a degree in engineering.,An applicant should have five years of programming experience.,How likely is it that an applicant should have both a degree in engineering and 5 years of programming experience?,experimental,Inclusive Biased,
 16,John has an M.D.,John has a Ph.D.,How likely is it that someone has both an M.D. and a Ph.D. ?,experimental,Exclusive Biased,
 17,I’d like flowers.,I’d like champagne.,How likely is it that someone would like both flowers and champagne?,experimental,Inclusive Biased,
-18,I could invite John.,I could invite Sarah.,How likely is it that someone could invite both Sarah and John?,experimental,Exclusive Biased,
+18,I could invite John.,I could invite Sarah.,How likely is it that someone could invite both John and Sarah?,experimental,Exclusive Biased,
 19,John is patriotic. ,John is quixotic. ,How likely is it that someone is both patriotic and quixotic?,experimental,N/A,
 20,Every student who speaks French passed the exam,Every student who speaks Spanish passed the exam,How likely is it that every student who speaks both French and Spanish passed the exam?,experimental,Inclusive Biased,
 21,Every woman bought eggs.,Every woman bought bananas.,How likely is it that every woman bought both eggs and bananas?,experimental,N/A,
