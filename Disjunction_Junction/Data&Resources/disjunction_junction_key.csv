@@ -45,7 +45,7 @@ ID,Disjunct_A,Disjunct_B,Question,Group,Claimed Bias,Notes
 44,"If everything goes well, we'll hire Mary.","If everything goes well, we'll hire Sue. ","How likely is it that if everything goes well, both Mary and Sue will be hired?",experimental,Exclusive Biased,
 45,"If we hire Mary, everything will go well. ","If we hire Sue, everything will go well. ",How likely is it that if both Mary and Sue are hired everything will go well?,experimental,Inclusive Biased,
 46,He told them that you can find protein in meat.,He told them that you can find protein in fish. ,How likely is it that someone told them that you can find protein in both meat and fish?,experimental,Inclusive Biased,
-47,"Even though she did not have a lot of money, she offered to buy John an umbrella.","Even though she did not have a lot of money, she offered to buy John a coat.","How likely is it that even though someone did not have a lot of money, they offered to buy John an umbrella and a coat?",experimental,Exclusive Biased,
+47,"Even though she did not have a lot of money, she offered to buy John an umbrella.","Even though she did not have a lot of money, she offered to buy John a coat.","How likely is it that even though someone did not have a lot of money, they offered to buy John both an umbrella and a coat?",experimental,Exclusive Biased,
 48,Lauren is alive.,Lauren is not dead.,How likely is it that someone is both alive and not dead?,control,control,
 49,My dishwasher is off. ,My dishwasher is not on. ,How likely is it that a dishwasher is both off and not on?,control,control,
 50,Raccoons are nocturnal. ,Raccoons are active primarily at night. ,How likely is it that raccoons are both nocturnal and active primarily at night ?,control,control,

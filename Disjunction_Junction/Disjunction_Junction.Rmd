@@ -8,14 +8,14 @@ date: '2022-10-11'
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Load required libraries
+Load required libraries
 ```{r, include= FALSE}
 library('tidyverse')
 library('ggplot2')
 library('lme4')
 ```
 
-### Read in and join raw data with the key
+Read in and join raw data with the key
 ```{r}
 # Reads in data file
 data = read.csv('../Disjunction_Junction/Data&Resources/test_data_2.csv')
@@ -38,7 +38,7 @@ data = left_join(data, key, by = 'ID')
 ```
 
 # Data Cleaning
-### There are a total of 6 attention checking control items, each of which should result in either close to 0% or close to 100% chance ratings from participants who were paying attention. The following code block excludes participants who did not rate at least 5 out of the 6 control items as within 10% of either 0% or 100%, whichever was accurate. 
+There are a total of 6 attention checking control items, each of which should result in either close to 0% or close to 100% chance ratings from participants who were paying attention. The following code block excludes participants who did not rate at least 5 out of the 6 control items as within 10% of either 0% or 100%, whichever was accurate. 
 ```{r}
 #Filter just the 100% control items
 cntr_100 = data %>% filter(ID == 48 | ID == 49 | ID == 50)
@@ -63,10 +63,10 @@ data = data %>% filter(mean_accuracy > .8)
 ```
 
 # Overview of Analysis
-### In the first phase of this experiment, we have 2 main hypothesis to test. 1. Whether participants rate the likelihood that the two disjuncts co-occur as either more or less likely than the baseline of "the two events are equally likely to co-occur or to occur separately". 2. Whether the direction of the bias in ratings matches the literature's prediction of inclusive or exlcusive bias for the overall disjunction. 
+In the first phase of this experiment, we have 2 main hypothesis to test. 1. Whether participants rate the likelihood that the two disjuncts co-occur as either more or less likely than the baseline of "the two events are equally likely to co-occur or to occur separately". 2. Whether the direction of the bias in ratings matches the literature's prediction of inclusive or exlcusive bias for the overall disjunction. 
 
 # Hypothesis 1
-### The following code aggregates group means, standard deviations, and standard errors for each item
+The following code aggregates group means, standard deviations, and standard errors for each item
 ```{r}
 means = data %>% 
   group_by(ID) %>% 
@@ -77,7 +77,7 @@ print(means)
 ```
 
 
-### The code below creates a box and whisker plot for each of the items
+The code below creates a box and whisker plot for each of the items
 ```{r, echo=FALSE}
 g = ggplot(data, aes(ID, chance))
 g + geom_boxplot() + labs(title = 'Means and Variation by Item', x = 'Items (1-53)', y = 'Chance (%)')+
