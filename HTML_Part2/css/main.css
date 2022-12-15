@@ -18,7 +18,7 @@
   --labelOffset: 105px;
 }
 .sliderBox{
-  width: 80%; 
+  width: 80%;
   margin: auto;
 }
 .zeroLabel{
@@ -198,9 +198,9 @@ textarea {
 }
 
 @media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
 
@@ -278,4 +278,5 @@ textarea {
     page-break-after: avoid;
   }
 }
+
 
