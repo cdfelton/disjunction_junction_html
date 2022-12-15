@@ -13,12 +13,17 @@ Load required libraries
 library('tidyverse')
 library('ggplot2')
 library('lme4')
+library('lmerTest')
 ```
 
 Read in and join raw data with the key
 ```{r}
-# Reads in data file
-data = read.csv('../Disjunction_Junction/Data&Resources/test_data_2.csv')
+# Reads in data files
+data_1 = read.csv('../Disjunction_Junction/Data&Resources/Real_Data/dis_junct_preliminary-trials.csv')
+data_2 = read.csv('../Disjunction_Junction/Data&Resources/Real_Data/dis_junc_full_collection-trials.csv')
+
+# Combines the data from the two csvs
+data = rbind(data_1, data_2)
 
 # Factorizes and renames id column
 data = data %>% 
@@ -58,12 +63,12 @@ accuracy_table = accuracy_check %>% group_by(workerid) %>% summarise(mean_accura
 #Join the accuracy table to the rest of the data
 data = left_join(data, accuracy_table, by = 'workerid')
 
-#Filter out participants who got less than 5/6 correct
+#Filter out participants who got less than 5/6 correct (Starting with 50, 8 are excluded, leaving 42)
 data = data %>% filter(mean_accuracy > .8)
 ```
 
 # Overview of Analysis
-In the first phase of this experiment, we have 2 main hypothesis to test. 1. Whether participants rate the likelihood that the two disjuncts co-occur as either more or less likely than the baseline of "the two events are equally likely to co-occur or to occur separately". 2. Whether the direction of the bias in ratings matches the literature's prediction of inclusive or exlcusive bias for the overall disjunction. 
+In the first phase of this experiment, we have 2 main hypothesis to test. 1. Whether participants rate the likelihood that the two disjuncts co-occur as either more or less likely than the baseline of "the two events are equally likely to co-occur or to occur separately". 2. Whether the direction of the bias in ratings matches the literature's prediction of inclusive or exclusive bias for the overall disjunction. 
 
 # Hypothesis 1
 The following code aggregates group means, standard deviations, and standard errors for each item
@@ -76,16 +81,21 @@ means = data %>%
 print(means)
 ```
 
+The code below generates a plot with columns for the means and +/_ 1 SE errorbars
+```{r}
+graph_data = left_join(means, key, by = 'ID') %>% mutate(ID = fct_reorder(ID, Mean_Chance))
 
-The code below creates a box and whisker plot for each of the items
-```{r, echo=FALSE}
-g = ggplot(data, aes(ID, chance))
-g + geom_boxplot() + labs(title = 'Means and Variation by Item', x = 'Items (1-53)', y = 'Chance (%)')+
-  geom_dotplot(binaxis='y', 
-               stackdir='center', 
-               dotsize = .5,
-               binwidth = 3,
-               fill="red") +
+graph_data$Claimed.Bias[graph_data$Claimed.Bias == 'control'] = 'Control'
+graph_data$Claimed.Bias[graph_data$Claimed.Bias == 'Exclusive Biased'] = 'Hypothesized Exclusive'
+graph_data$Claimed.Bias[graph_data$Claimed.Bias == 'Inclusive Biased'] = 'Hypothesized Inclusive'
+
+graph_data = rename(graph_data, 'Hypothesized_Reading' = 'Claimed.Bias')
+
+g = ggplot(graph_data, aes(ID, Mean_Chance))
+g + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title = 'Means and Variation by Item', x = 'Items', y = 'Rated Likelihood of Cooccurence (0%-100%)')+
+  geom_errorbar(width = .5,
+                aes(ymin = Mean_Chance - Standard_Error*2, ymax = Mean_Chance + Standard_Error*2),
+                position = position_dodge(.9)) +
                theme_bw() +
                theme(axis.text.x = element_blank())
 ```
@@ -102,9 +112,9 @@ model_data$Claimed.Bias = as_factor(model_data$Claimed.Bias)
 model_0 = lm(chance ~ Claimed.Bias, data = model_data)
 summary(model_0)
 
-# A more robust linear mixed effects regression
-model_1 = lmer(chance ~ ID + Claimed.Bias + (1 | workerid), data = model_data)
-summary(model_1)
+# Fixed version of the old model (will actually run, rank deficient when ID is a fixed effect)
+model_2 = lmer(chance ~ Claimed.Bias + (1 | workerid), data = model_data)
+summary(model_2)
 
 ```
 
