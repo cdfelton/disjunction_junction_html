@@ -16,6 +16,7 @@ library('lme4')
 library('lmerTest')
 ```
 
+# Experiment 1 Cleaning and Analysis
 Read in and join raw data with the key
 ```{r}
 # Reads in data files
@@ -67,10 +68,10 @@ data = left_join(data, accuracy_table, by = 'workerid')
 data = data %>% filter(mean_accuracy > .8)
 ```
 
-# Overview of Analysis
-In the first phase of this experiment, we have 2 main hypothesis to test. 1. Whether participants rate the likelihood that the two disjuncts co-occur as either more or less likely than the baseline of "the two events are equally likely to co-occur or to occur separately". 2. Whether the direction of the bias in ratings matches the literature's prediction of inclusive or exclusive bias for the overall disjunction. 
+# Overview of Analysis for Experiment One
+In the first phase of this experiment, we have 1 main hypothesis to test: Whether the direction of the bias in participant ratings matches the literature's prediction of inclusive or exclusive bias for the overall disjunction. 
 
-# Hypothesis 1
+
 The following code aggregates group means, standard deviations, and standard errors for each item
 ```{r}
 means = data %>% 
@@ -100,7 +101,7 @@ g + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title 
                theme(axis.text.x = element_blank())
 ```
 
-### The next section uses a linear model to test the second hypothesis
+### The next section uses a linear model to test the hypothesis
 ```{r}
 # Filter out items with no recorded bias claim
 model_data = data %>% filter(Claimed.Bias == 'Exclusive Biased' | Claimed.Bias == 'Inclusive Biased')
@@ -115,6 +116,120 @@ summary(model_0)
 # Fixed version of the old model (will actually run, rank deficient when ID is a fixed effect)
 model_2 = lmer(chance ~ Claimed.Bias + (1 | workerid), data = model_data)
 summary(model_2)
+
+```
+
+# Experiment 2 Analysis
+
+The following code reads in and joins the data from experiment 2 to its respective key as well as the means data from experiment 1. 
+```{r}
+# Reads in data files
+data_part2 = read.csv('/Users/caseyfelton/Downloads/dis_junct_part2-trials.csv')
+
+# Factorizes and renames id column
+data_part2 = data_part2 %>% 
+  mutate(ID = as.factor(id))
+
+# Select just the columns needed for analysis
+data_part2 = data_part2 %>% select(workerid, ID, chance)
+
+# Renames chance to something more easily interpretable for experiment 2
+data_part2 = rename(data_part2, "Implicature_Likelihood"="chance")
+
+# Reads in key file
+key2 = read.csv('../Disjunction_Junction/Data&Resources/disjunction_junction_key.csv')
+
+# Factorizes IS column
+key2$ID = as_factor(key2$ID)
+
+# Joins key and data
+data_part2 = left_join(data_part2, key2, by = 'ID')
+
+```
+
+# Data Cleaning for Part 2
+There are a total of 6 attention checking control items, each of which should result in either close to 0% or close to 100% chance ratings from participants who were paying attention. The following code block excludes participants who did not rate at least 5 out of the 6 control items as within 10% of either 0% or 100%, whichever was accurate.
+
+```{r}
+#Filter just the 100% control items
+cntr_100_part2 = data_part2 %>% filter(ID == 48 | ID == 49 | ID == 50)
+#Filter just the 0% control items
+cntr_0_part2 = data_part2 %>% filter(ID == 51 | ID == 52 | ID == 53)
+
+#Adds a column for accuracy
+cntr_100_part2$correct = cntr_100_part2$Implicature_Likelihood >= 90
+cntr_0_part2$correct = cntr_0_part2$Implicature_Likelihood <= 10
+
+#Combines the items
+accuracy_check_part2 = rbind(cntr_0_part2, cntr_100_part2)
+
+#Creates a table with the aggregated mean accuracy for each participant
+accuracy_table_part2 = accuracy_check_part2 %>% group_by(workerid) %>% summarise(mean_accuracy = mean(correct))
+
+#Join the accuracy table to the rest of the data
+data_part2 = left_join(data_part2, accuracy_table_part2, by = 'workerid')
+
+#Filter out participants who got less than 5/6 correct (Starting with 50, 8 are excluded, leaving 42)
+data_part2 = data_part2 %>% filter(mean_accuracy > .8)
+```
+
+# Overview of Analysis for Experiment Two
+Experiment two aimed to test our second main research question: To what extent do the prior incompatibility ratings from experiment one predict the implicature rates from experiment two?
+
+The following code generates the means and measures of variance for the data from experiment 2. 
+```{r}
+mean_part2 = data_part2 %>% 
+  group_by(ID) %>% 
+  summarise(Implicature_Rate = mean(Implicature_Likelihood),
+            Standard_Deviation_Imp = sd(Implicature_Likelihood),
+            Standard_Error_Imp  = Standard_Deviation_Imp/sqrt(length(unique(data_part2$workerid))))
+
+```
+
+The following code generates a similar plot to the data from part 1
+```{r}
+graph_data2 = left_join(mean_part2, key2, by = 'ID') %>% mutate(ID = fct_reorder(ID, Implicature_Rate))
+
+graph_data2$Claimed.Bias[graph_data2$Claimed.Bias == 'control'] = 'Control'
+graph_data2$Claimed.Bias[graph_data2$Claimed.Bias == 'Exclusive Biased'] = 'Hypothesized Exclusive'
+graph_data2$Claimed.Bias[graph_data2$Claimed.Bias == 'Inclusive Biased'] = 'Hypothesized Inclusive'
+
+graph_data2 = rename(graph_data2, 'Hypothesized_Reading' = 'Claimed.Bias')
+
+g2 = ggplot(graph_data2, aes(ID, Implicature_Rate))
+g2 + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title = 'Implicature Rate and Variation by Item', x = 'Items', y = 'Implicature Rate (0%-100%)')+
+  geom_errorbar(width = .5,
+                aes(ymin = Implicature_Rate - Standard_Error_Imp*2, ymax = Implicature_Rate + Standard_Error_Imp*2),
+                position = position_dodge(.9)) +
+               theme_bw() +
+               theme(axis.text.x = element_blank())
+```
+
+The following code assesses the correlation between prior incompatibility ratings from experiment one and the implicature rates from experiment two
+```{r}
+# Combines data from both studies 
+data_combined = 
+
+# Generates a by item correlation table
+corrdata = data_combined %>% 
+  group_by(ID) %>% 
+  summarise(Correlation = cor(chance, Implicature_Likelihood))
+
+print(corrdata)
+
+```
+
+
+The following model assesses the relationship between the items across each experiment. The fixed effect of each item reflects the model prediction for prior likelihood, while the fixed effect of experiment 
+```{r}
+data_part2$experiment = 1
+data$experiment = 0
+
+model3_data = rbind(data, data_part2)
+
+model_3 = lmer(chance ~ item * experiment, data = model3_data)
+summary(model_3)
+
 
 ```
 
