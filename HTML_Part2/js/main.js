@@ -1,12 +1,12 @@
 
 let practiceTests = [
-  { A: "Mike hates all types of fruit or Mike's favorite food is watermelon.", B:"How likely is it that Mike hates all types of fruit and Mike's favorite food is watermelon?", Explanation: "These practice trials will be examples of items that have objectively correct answers. Since it's impossible to hate all fruit and have watermelon be your favorite food, the correct answer here is all the way at the left end of the slider."},
-  { A: "My favorite color is a primary color or is yellow, red, or blue.", B:"How likely is it that the speaker's favorite color is a primary color and is yellow, red, or blue?" , Explanation: "Since yellow red and blue are the only primary colors, the correct answer here is all the way at the right end of the slider, since these things must both be true if one is true."},
-  { A: "There was thunder or lightning.", B:'How likely is it that there was thunder and lightning?', Explanation: "Depending on where you live, thunder and lightning might be rare, but they are very likely to occur together when they happen. The best answer is all the way at the far right end of the slider." },
-  { A: "David is a bachelor or is married.", B:'How likely is it that David is a bachelor and is married?', Explanation: "It's impossible to be both married and a bachelor! The best answer is all the way at the far left end of the slider." }
+  { A: "Mike hates all types of fruit or Mike's favorite food is watermelon.", B:"Based on the sentence, how possible is it that Mike hates all types of fruit and Mike's favorite food is watermelon?", Explanation: "This is an example of an item that has an objectively correct answer. Since it's impossible to hate all fruit and have watermelon be your favorite food, the correct answer here is all the way at the left end of the slider."},
+  { A: "My favorite color is a primary color or is yellow, red, or blue.", B:"Based on the sentence, how possible is it that the speaker's favorite color is both a primary color and is yellow, red, or blue?" , Explanation: "Here's another item with a correct answer. Since yellow red and blue are the only primary colors, the correct answer here is all the way at the right end of the slider, since the two options mean the same thing."},
+  { A: "David is a bachelor or is married.", B:'Based on the sentence, how possible is it that David is both a bachelor and married?', Explanation: "It's impossible to be both married and a bachelor! The best answer is all the way at the far left end of the slider." },
+  { A: "Feel free to take a free T-shirt or hat.", B: "Based on the sentence, how possible is it that the speaker meant you could take both a T-shirt and a hat?", Explanation: "There isn't a 'right' answer here, so just answer based on your intuitions. (Most trials in the experiment will be like this one.)"}
 ]
 
-let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/2d813e89cddc55f735872dad6ba62e84/raw/d9f3805b0136e7e1ca7821e31f25b53573ba9410/stimuli_2.json';
+let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/2d813e89cddc55f735872dad6ba62e84/raw/5150096d441f05662e706ed5a69f4226431642db/stimuli_2.json';
 let stimuli;
 userResult = [];
 let sliderMoved = false;

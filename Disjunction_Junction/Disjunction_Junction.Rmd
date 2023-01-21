@@ -14,6 +14,7 @@ library('tidyverse')
 library('ggplot2')
 library('lme4')
 library('lmerTest')
+library('boot')
 ```
 
 # Experiment 1 Cleaning and Analysis
@@ -205,22 +206,8 @@ g2 + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title
                theme(axis.text.x = element_blank())
 ```
 
-The following code assesses the correlation between prior incompatibility ratings from experiment one and the implicature rates from experiment two
-```{r}
-# Combines data from both studies 
-data_combined = 
 
-# Generates a by item correlation table
-corrdata = data_combined %>% 
-  group_by(ID) %>% 
-  summarise(Correlation = cor(chance, Implicature_Likelihood))
-
-print(corrdata)
-
-```
-
-
-The following model assesses the relationship between the items across each experiment. The fixed effect of each item reflects the model prediction for prior likelihood, while the fixed effect of experiment 
+The following model assesses the relationship between the items across each experiment. The fixed effect of each item reflects the model prediction for prior likelihood, while the fixed effect of experiment reflects the task effect. Lastly, the interaction between item and experiment reflects the change in rating attributable to "or". 
 ```{r}
 data_part2$experiment = 1
 data$experiment = 0
