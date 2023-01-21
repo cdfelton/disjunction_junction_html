@@ -1,9 +1,8 @@
 
 let practiceTests = [
-  { A: "Mike hates all types of fruit or Mike's favorite food is watermelon.", B:"Based on the sentence, how possible is it that Mike hates all types of fruit and Mike's favorite food is watermelon?", Explanation: "This is an example of an item that has an objectively correct answer. Since it's impossible to hate all fruit and have watermelon be your favorite food, the correct answer here is all the way at the left end of the slider."},
-  { A: "My favorite color is a primary color or is yellow, red, or blue.", B:"Based on the sentence, how possible is it that the speaker's favorite color is both a primary color and is yellow, red, or blue?" , Explanation: "Here's another item with a correct answer. Since yellow red and blue are the only primary colors, the correct answer here is all the way at the right end of the slider, since the two options mean the same thing."},
-  { A: "David is a bachelor or is married.", B:'Based on the sentence, how possible is it that David is both a bachelor and married?', Explanation: "It's impossible to be both married and a bachelor! The best answer is all the way at the far left end of the slider." },
-  { A: "Feel free to take a free T-shirt or hat.", B: "Based on the sentence, how possible is it that the speaker meant you could take both a T-shirt and a hat?", Explanation: "There isn't a 'right' answer here, so just answer based on your intuitions. (Most trials in the experiment will be like this one.)"}
+  { A: "Mike is asleep or not awake.", B:"Based on the sentence, how possible is it that Mike is both asleep and not awake?" , Explanation: "To us, after reading the sentence it seems very possible that Mike is both asleep and not awake. We recommend somewhere on the right end of the slider, maybe near the end."},
+  { A: "David is a bachelor or is married.", B:'Based on the sentence, how possible is it that David is both a bachelor and married?', Explanation: "This seems much less possible to us, so we recommend an answer at the far left end of the slider." },
+  { A: "Feel free to take a free T-shirt or hat.", B: "Based on the sentence, how possible is it that the speaker meant you could take both a T-shirt and a hat?", Explanation: "We're not sure about this one, so just answer based on your intuitions."}
 ]
 
 let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/2d813e89cddc55f735872dad6ba62e84/raw/5150096d441f05662e706ed5a69f4226431642db/stimuli_2.json';

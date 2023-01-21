@@ -205,12 +205,13 @@ g2 + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title
                theme_bw() +
                theme(axis.text.x = element_blank())
 ```
-
+The following code graphs the means of incompatibility and implicature rates by item
 
 The following model assesses the relationship between the items across each experiment. The fixed effect of each item reflects the model prediction for prior likelihood, while the fixed effect of experiment reflects the task effect. Lastly, the interaction between item and experiment reflects the change in rating attributable to "or". 
 ```{r}
 data_part2$experiment = 1
 data$experiment = 0
+
 
 model3_data = rbind(data, data_part2)
 
