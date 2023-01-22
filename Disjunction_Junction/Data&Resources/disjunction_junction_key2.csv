@@ -1,0 +1,54 @@
+ID,Disjunction,Question,Group,Hypothesized_Bias,NOTES
+1,John brought pizza or pasta to the party.,"Based on the sentence, how possible is it that John brought both pizza and pasta to the party?",experimental,Exclusive Biased,
+2,Every boy chose a skate-board or a bike.,"Based on the sentence, how possible is it that every boy chose both a skate-board and a bike?",experimental,Exclusive Biased,
+3,Every farmer cleaned a horse or a rabbit.,"Based on the sentence, how possible is it that every farmer cleaned both a horse and a rabbit?",experimental,Exclusive Biased,
+4,John is singing or screaming.,"Based on the sentence, how possible is it that John is both singing and screaming?",experimental,Exclusive Biased,
+5,Every student who wrote an essay or made a classroom presentation got extra credit.,"Based on the sentence, how possible is it that both every student who wrote an essay and every student who made a classroom presentation got extra credit?",experimental,Inclusive Biased,
+6,"Tomorrow, a linguist or a philosopher will come to see me.","Based on the sentence, how possible is it that tomorrow, both a linguist and a philosopher will come to see them?",experimental,Exclusive Biased,
+7,Ernie or Bert were at the airport.,"Based on the sentence, how possible is it that Ernie and Bert were both at the airport?",experimental,Exclusive Biased,AGREEMENT
+8,"If you take salad or dessert, you pay $20.","Based on the sentence, how possible is it that if you take both salad and dessert, you pay $20?",experimental,Exclusive Biased ,
+9,"If you take salad or dessert, you'll be really full.","Based on the sentence, how possible is it that if you take both salad and dessert, you'll be really full?",experimental,Inclusive Biased,
+10,Marie dated John or Bill.,"Based on the sentence, how possible is it that Marie dated both John and Bill?",experimental,Exclusive Biased,
+11,He heard that if he wanted to pass the course he should read the class notes or the summary.,"Based on the sentence, how possible is it that people meant that if he wanted to pass the course he should read both the class notes and the summary?",experimental,Inclusive Biased,
+12,Jones or Barnes from the Department of Finance has the report on last year's earnings.,"Based on the sentence, how possible is it that both Jones and Barnes from the Department of Finance have the report on last year's earnings?",experimental,N/A,AGREEMENT
+13,Every boy is holding an apple or a banana.,"Based on the sentence, how possible is it that every boy is holding both an apple and a banana?",experimental,N/A,
+14,Joe or Bill will show up.,"Based on the sentence, how possible is it that both Joe and Bill will show up?",experimental,Exclusive Biased,
+15,An applicant should have a degree in engineering or five years of programming experience.,"Based on the sentence, how possible is it that the speaker would be fine with an applicant who has both a degree in engineering and five years of programming experience?",experimental,Inclusive Biased,
+16,John has an M.D. or a Ph.D.,"Based on the sentence, how possible is it that John has both an M.D. and a Ph.D.?",experimental,Exclusive Biased,
+17,I’d like flowers or champagne.,"Based on the sentence, how possible is it that the speaker would like both flowers and champagne?",experimental,Inclusive Biased,
+18,I could invite John or Sarah.,"Based on the sentence, how possible is it that the speaker is able to invite both John and Sarah?",experimental,Exclusive Biased,
+19,John is patriotic or quixotic,"Based on the sentence, how possible is it that John is both patriotic and quixotic?",experimental,N/A,EITHER
+20,Every student who speaks French or Spanish passed the exam.,"Based on the sentence, how possible is it that both every student who speaks French and every student who speaks Spanish passed the exam?",experimental,Inclusive Biased,
+21,Every woman bought eggs or bananas.,"Based on the sentence, how possible is it that every woman bought both eggs and bananas?",experimental,N/A,
+22,The policeman stressed to Jim that valid identification documentation are his ID or passport. ,"Based on the sentence, how possible is it that the policeman stressed to Jim that valid identification documentation are both his ID and passport? ",experimental,Inclusive Biased,
+23,Today customers can have free meat or fish. ,"Based on the sentence, how possible is it that today customers can have both free meat and free fish? ",experimental,Exclusive Biased,
+24,"To avoid getting wet, Maria suggested Jeffrey take an umbrella or a coat with him. ","Based on the sentence, how possible is it that Maria meant that Jeffrey should take both an umbrella and a coat with him? ",experimental,Inclusive Biased,
+25,Ivan is an American or a Russian. ,"Based on the sentence, how possible is it that Ivan is both an American and a Russian? ",experimental,Exclusive Biased,
+26,Customers who are teachers or college students are entitled to a special reduction. ,"Based on the sentence, how possible is it that customers who are both teachers and college students are entitled to a special reduction? ",experimental,Inclusive Biased,
+27,We shall go on a hike or we shall go to the theater. ,"Based on the sentence, how possible is it that they shall both go on a hike and go to the theater? ",experimental,Exclusive Biased,CHANGE
+28,Jane is talking to her mother or she is surfing the web.,"Based on the sentence, how possible is it that Jane is both talking to her mother and surfing the web?",experimental,N/A,EITHER
+29,The painting is of a man or a woman. ,"Based on the sentence, how possible is it that the painting is both of a man and of a woman? ",experimental,Exclusive Biased,
+30,You may eat an apple or a pear.,"Based on the sentence, how possible is it that you may eat both an apple and a pear?",experimental,N/A,
+31,Gray is a professor of law or a judge. ,"Based on the sentence, how possible is it that Gray is both a professor of law and a judge? ",experimental,Exclusive Biased,
+32,Martha is in love with Alf or Bert.,"Based on the sentence, how possible is it that Martha is in love with both Alf and Bert?",experimental,Exclusive Biased,
+33,You may consult your notes or your textbook during the exam.,"Based on the sentence, how possible is it that you may consult your notes and your textbook during the exam?",experimental,Inclusive Biased,
+34,Wilma is dating Albinoni or Boccherini.,"Based on the sentence, how possible is it that Wilma is dating both Albinoni and Boccherini?",experimental,Exclusive Biased,
+35,Betty read “Ulysses” or “Finnegans Wake”.,"Based on the sentence, how possible is it that Betty read both “Ulysses” and “Finnegans Wake”?",experimental,N/A,
+36,Barney has bought a Manet or a Monet.,"Based on the sentence, how possible is it that Barney bought both a Manet and a Monet?",experimental,Exclusive Biased,
+37,Sue talked to John or Fred. ,"Based on the sentence, how possible is it that Sue talked to both John and Fred? ",experimental,Exclusive Biased,
+38,You’re allowed to eat the cake or the ice-cream.,"Based on the sentence, how possible is it that you’re allowed to eat both the cake and the ice-cream?",experimental,Inclusive Biased,
+39,He can climb Mt. Everest or ski the Matterhorn.,"Based on the sentence, how possible is it that he can both climb Mt. Everest and ski the Matterhorn?",experimental,Inclusive Biased,
+40,There is beer in the fridge or the ice-bucket.,"Based on the sentence, how possible is it that there is beer in both the fridge and the ice-bucket?",experimental,Inclusive Biased,
+41,Bring wine or dessert!,"Based on the sentence, how possible is it that the speaker wants you to bring both wine and dessert?",experimental,Exclusive Biased,CHANGE
+42,John talked to Mary or Sue.,"Based on the sentence, how possible is it that John talked to both Mary and Sue?",experimental,Exclusive Biased,
+43,There is money in box 20 or 25. ,"Based on the sentence, how possible is it that there is money in both box 20 and 25? ",experimental,Exclusive Biased,
+44,"If everything goes well, we'll hire Mary or Sue. ","Based on the sentence, how possible is it that if everything goes well, they will hire both Mary and Sue? ",experimental,Exclusive Biased,EITHER/CHANGE
+45,"If we hire Mary or Sue, everything will go well. ","Based on the sentence, how possible is it that if they hire Mary or Sue or both, everything will go well? ",experimental,Inclusive Biased,EITHER/CHANGE
+46,He told them that you can find protein in meat or fish. ,"Based on the sentence, how possible is it that he meant that you can find protein in both meat and fish? ",experimental,Inclusive Biased,CHANGE
+47,"Even though she did not have a lot of money, she offered to buy John an umbrella or a coat.","Based on the sentence, how possible is it that even though she did not have a lot of money, she would have been willing to buy John both an umbrella and a coat?",experimental,Exclusive Biased,CHANGE
+48,Lauren is alive or not dead.,"Based on the sentence, how possible is it that Lauren is both alive and not dead?",control,control,
+49,My dishwasher is off or not on.,"Based on the sentence, how possible is it that my dishwasher is both off and not on?",control,control,
+50,Raccoons are nocturnal or are active primarily at night. ,"Based on the sentence, how possible is it that raccoons are both nocturnal and active primarily at night?",control,control,
+51,My only pet is a cat or a dog. ,"Based on the sentence, how possible is it that the speaker's only pet is both a cat and a dog? ",control,control,CHANGE
+52,Evan is a social drinker or does not drink alcohol.,"Based on the sentence, how possible is it that Evan is both a social drinker and does not drink alcohol?",control,control,
+53,The defendant is innocent of all charges or guilty of all charges.,"Based on the sentence, how possible is it that the defendant is both innocent of all charges and guilty of all charges?",control,control,

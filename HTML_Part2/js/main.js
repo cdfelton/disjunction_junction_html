@@ -5,7 +5,7 @@ let practiceTests = [
   { A: "Feel free to take a free T-shirt or hat.", B: "Based on the sentence, how possible is it that the speaker meant you could take both a T-shirt and a hat?", Explanation: "We're not sure about this one, so just answer based on your intuitions."}
 ]
 
-let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/2d813e89cddc55f735872dad6ba62e84/raw/5150096d441f05662e706ed5a69f4226431642db/stimuli_2.json';
+let GIST_LINK = 'https://gist.githubusercontent.com/cdfelton/2d813e89cddc55f735872dad6ba62e84/raw/9f74c6a463c75ddd49b25da1919f304664642891/stimuli_2.json';
 let stimuli;
 userResult = [];
 let sliderMoved = false;

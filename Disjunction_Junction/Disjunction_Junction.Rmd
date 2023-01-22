@@ -125,7 +125,7 @@ summary(model_2)
 The following code reads in and joins the data from experiment 2 to its respective key as well as the means data from experiment 1. 
 ```{r}
 # Reads in data files
-data_part2 = read.csv('/Users/caseyfelton/Downloads/dis_junct_part2-trials.csv')
+data_part2 = read.csv('/Users/caseyfelton/Downloads/dis_junct_part2-trials-2.csv')
 
 # Factorizes and renames id column
 data_part2 = data_part2 %>% 
@@ -135,10 +135,10 @@ data_part2 = data_part2 %>%
 data_part2 = data_part2 %>% select(workerid, ID, chance)
 
 # Renames chance to something more easily interpretable for experiment 2
-data_part2 = rename(data_part2, "Implicature_Likelihood"="chance")
+data_part2 = mutate(data_part2, Implicature_Likelihood= data_part2$chance)
 
 # Reads in key file
-key2 = read.csv('../Disjunction_Junction/Data&Resources/disjunction_junction_key.csv')
+key2 = read.csv('../Disjunction_Junction/Data&Resources/disjunction_junction_key2.csv')
 
 # Factorizes IS column
 key2$ID = as_factor(key2$ID)
@@ -191,11 +191,11 @@ The following code generates a similar plot to the data from part 1
 ```{r}
 graph_data2 = left_join(mean_part2, key2, by = 'ID') %>% mutate(ID = fct_reorder(ID, Implicature_Rate))
 
-graph_data2$Claimed.Bias[graph_data2$Claimed.Bias == 'control'] = 'Control'
-graph_data2$Claimed.Bias[graph_data2$Claimed.Bias == 'Exclusive Biased'] = 'Hypothesized Exclusive'
-graph_data2$Claimed.Bias[graph_data2$Claimed.Bias == 'Inclusive Biased'] = 'Hypothesized Inclusive'
+graph_data2$Hypothesized_Bias[graph_data2$Hypothesized_Bias == 'control'] = 'Control'
+graph_data2$Hypothesized_Bias[graph_data2$Hypothesized_Bias == 'Exclusive Biased'] = 'Hypothesized Exclusive'
+graph_data2$Hypothesized_Bias[graph_data2$Hypothesized_Bias == 'Inclusive Biased'] = 'Hypothesized Inclusive'
 
-graph_data2 = rename(graph_data2, 'Hypothesized_Reading' = 'Claimed.Bias')
+graph_data2 = rename(graph_data2, 'Hypothesized_Reading' = 'Hypothesized_Bias')
 
 g2 = ggplot(graph_data2, aes(ID, Implicature_Rate))
 g2 + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title = 'Implicature Rate and Variation by Item', x = 'Items', y = 'Implicature Rate (0%-100%)')+
