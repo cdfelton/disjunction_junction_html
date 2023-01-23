@@ -125,7 +125,7 @@ summary(model_2)
 The following code reads in and joins the data from experiment 2 to its respective key as well as the means data from experiment 1. 
 ```{r}
 # Reads in data files
-data_part2 = read.csv('/Users/caseyfelton/Downloads/dis_junct_part2-trials-2.csv')
+data_part2 = read.csv('../Disjunction_Junction/Data&Resources/Real_Data/dis_junct_part2.csv')
 
 # Factorizes and renames id column
 data_part2 = data_part2 %>% 
@@ -158,8 +158,8 @@ cntr_100_part2 = data_part2 %>% filter(ID == 48 | ID == 49 | ID == 50)
 cntr_0_part2 = data_part2 %>% filter(ID == 51 | ID == 52 | ID == 53)
 
 #Adds a column for accuracy
-cntr_100_part2$correct = cntr_100_part2$Implicature_Likelihood >= 90
-cntr_0_part2$correct = cntr_0_part2$Implicature_Likelihood <= 10
+cntr_100_part2$correct = cntr_100_part2$Implicature_Likelihood >= 70
+cntr_0_part2$correct = cntr_0_part2$Implicature_Likelihood <= 30
 
 #Combines the items
 accuracy_check_part2 = rbind(cntr_0_part2, cntr_100_part2)
@@ -205,6 +205,16 @@ g2 + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title
                theme_bw() +
                theme(axis.text.x = element_blank())
 ```
+The following code graphs the relationship between the data in each experiment.
+```{r}
+graph3_data = left_join(means, mean_part2, by = "ID")
+graph3_data = left_join(graph3_data, key2, by = 'ID')
+g3 = ggplot(aes(Mean_Chance, Implicature_Rate), data = graph3_data) +
+  geom_point(aes(color = Hypothesized_Bias))
+g3
+```
+
+
 The following code graphs the means of incompatibility and implicature rates by item
 
 The following model assesses the relationship between the items across each experiment. The fixed effect of each item reflects the model prediction for prior likelihood, while the fixed effect of experiment reflects the task effect. Lastly, the interaction between item and experiment reflects the change in rating attributable to "or". 
@@ -213,9 +223,9 @@ data_part2$experiment = 1
 data$experiment = 0
 
 
-model3_data = rbind(data, data_part2)
+model3_data = rbind((data %>% select(ID, chance, experiment)), (data_part2%>% select(ID, chance, experiment)))
 
-model_3 = lmer(chance ~ item * experiment, data = model3_data)
+model_3 = lm(chance ~ ID * experiment, data = model3_data)
 summary(model_3)
 
 

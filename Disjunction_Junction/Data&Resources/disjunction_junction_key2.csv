@@ -6,7 +6,7 @@ ID,Disjunction,Question,Group,Hypothesized_Bias,NOTES
 5,Every student who wrote an essay or made a classroom presentation got extra credit.,"Based on the sentence, how possible is it that both every student who wrote an essay and every student who made a classroom presentation got extra credit?",experimental,Inclusive Biased,
 6,"Tomorrow, a linguist or a philosopher will come to see me.","Based on the sentence, how possible is it that tomorrow, both a linguist and a philosopher will come to see them?",experimental,Exclusive Biased,
 7,Ernie or Bert were at the airport.,"Based on the sentence, how possible is it that Ernie and Bert were both at the airport?",experimental,Exclusive Biased,AGREEMENT
-8,"If you take salad or dessert, you pay $20.","Based on the sentence, how possible is it that if you take both salad and dessert, you pay $20?",experimental,Exclusive Biased ,
+8,"If you take salad or dessert, you pay $20.","Based on the sentence, how possible is it that if you take both salad and dessert, you pay $20?",experimental,Exclusive Biased,
 9,"If you take salad or dessert, you'll be really full.","Based on the sentence, how possible is it that if you take both salad and dessert, you'll be really full?",experimental,Inclusive Biased,
 10,Marie dated John or Bill.,"Based on the sentence, how possible is it that Marie dated both John and Bill?",experimental,Exclusive Biased,
 11,He heard that if he wanted to pass the course he should read the class notes or the summary.,"Based on the sentence, how possible is it that people meant that if he wanted to pass the course he should read both the class notes and the summary?",experimental,Inclusive Biased,
