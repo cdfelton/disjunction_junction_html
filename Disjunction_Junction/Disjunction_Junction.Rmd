@@ -15,6 +15,7 @@ library('ggplot2')
 library('lme4')
 library('lmerTest')
 library('boot')
+library('ggpubr')
 ```
 
 # Experiment 1 Cleaning and Analysis
@@ -90,16 +91,17 @@ graph_data = left_join(means, key, by = 'ID') %>% mutate(ID = fct_reorder(ID, Me
 graph_data$Claimed.Bias[graph_data$Claimed.Bias == 'control'] = 'Control'
 graph_data$Claimed.Bias[graph_data$Claimed.Bias == 'Exclusive Biased'] = 'Hypothesized Exclusive'
 graph_data$Claimed.Bias[graph_data$Claimed.Bias == 'Inclusive Biased'] = 'Hypothesized Inclusive'
+graph_data$Claimed.Bias[graph_data$Claimed.Bias == 'N/A'] = 'No Prediction Made'
 
 graph_data = rename(graph_data, 'Hypothesized_Reading' = 'Claimed.Bias')
 
 g = ggplot(graph_data, aes(ID, Mean_Chance))
-g + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title = 'Means and Variation by Item', x = 'Items', y = 'Rated Likelihood of Cooccurence (0%-100%)')+
+g = g + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title = 'Means and Variation in Compatability Ratings by Item', x = 'Items', y = 'Mean Compatibility Rating (%)')+
   geom_errorbar(width = .5,
                 aes(ymin = Mean_Chance - Standard_Error*2, ymax = Mean_Chance + Standard_Error*2),
                 position = position_dodge(.9)) +
                theme_bw() +
-               theme(axis.text.x = element_blank())
+               theme(axis.text.x = element_blank()) + labs(fill = "Hypothesized Reading")
 ```
 
 ### The next section uses a linear model to test the hypothesis
@@ -118,6 +120,19 @@ summary(model_0)
 model_2 = lmer(chance ~ Claimed.Bias + (1 | workerid), data = model_data)
 summary(model_2)
 
+# Bayesian version of the model to conform to new stats practices
+model_1 = brm(chance ~ Claimed.Bias + (1 | workerid),
+             data = model_data,
+             family = gaussian,
+             iter = 4000,
+             cores = 4,
+             chains = 4,
+             warmup = 1000,
+             # control = list(adapt_delta = 0.99, max_treedepth = 15),
+             seed = 4
+             )
+print(model_1)
+plot(model_1)
 ```
 
 # Experiment 2 Analysis
@@ -189,30 +204,69 @@ mean_part2 = data_part2 %>%
 
 The following code generates a similar plot to the data from part 1
 ```{r}
-graph_data2 = left_join(mean_part2, key2, by = 'ID') %>% mutate(ID = fct_reorder(ID, Implicature_Rate))
+graph_data2 = left_join(mean_part2, key2, by = 'ID') 
+graph_data2 = left_join(graph_data2, means, by = 'ID') %>% mutate(ID = fct_reorder(ID, Mean_Chance))
 
 graph_data2$Hypothesized_Bias[graph_data2$Hypothesized_Bias == 'control'] = 'Control'
 graph_data2$Hypothesized_Bias[graph_data2$Hypothesized_Bias == 'Exclusive Biased'] = 'Hypothesized Exclusive'
 graph_data2$Hypothesized_Bias[graph_data2$Hypothesized_Bias == 'Inclusive Biased'] = 'Hypothesized Inclusive'
+graph_data2$Hypothesized_Bias[graph_data2$Hypothesized_Bias == 'N/A'] = 'No Prediction Made'
 
 graph_data2 = rename(graph_data2, 'Hypothesized_Reading' = 'Hypothesized_Bias')
 
 g2 = ggplot(graph_data2, aes(ID, Implicature_Rate))
-g2 + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title = 'Implicature Rate and Variation by Item', x = 'Items', y = 'Implicature Rate (0%-100%)')+
+g2 = g2 + geom_col(position = "dodge", aes(fill = Hypothesized_Reading)) + labs(title = 'Means and Variation in Implication Generation by Item', x = 'Items', y = 'Mean Inclusivity Ratings (%)')+
   geom_errorbar(width = .5,
                 aes(ymin = Implicature_Rate - Standard_Error_Imp*2, ymax = Implicature_Rate + Standard_Error_Imp*2),
                 position = position_dodge(.9)) +
                theme_bw() +
-               theme(axis.text.x = element_blank())
+               theme(axis.text.x = element_blank()) + labs(fill = "Hypothesized Reading")
 ```
 The following code graphs the relationship between the data in each experiment.
 ```{r}
-graph3_data = left_join(means, mean_part2, by = "ID")
+graph3_data = left_join(means, mean_part2, by = "ID") %>% mutate(ID = fct_reorder(ID, Mean_Chance))
 graph3_data = left_join(graph3_data, key2, by = 'ID')
-g3 = ggplot(aes(Mean_Chance, Implicature_Rate), data = graph3_data) +
-  geom_point(aes(color = Hypothesized_Bias))
+
+graph3_data$Hypothesized_Bias[graph3_data$Hypothesized_Bias == 'control'] = 'Control'
+graph3_data$Hypothesized_Bias[graph3_data$Hypothesized_Bias == 'Exclusive Biased'] = 'Hypothesized Exclusive'
+graph3_data$Hypothesized_Bias[graph3_data$Hypothesized_Bias == 'Inclusive Biased'] = 'Hypothesized Inclusive'
+graph3_data$Hypothesized_Bias[graph3_data$Hypothesized_Bias == 'N/A'] = 'No Prediction Made'
+
+g3 = ggplot(aes(x = Mean_Chance, y = Implicature_Rate), data = graph3_data) + 
+  labs(title = 'Correlation of Compatability and Implication Rate', x = 'Mean Compatibility Ratings (%)', y = 'Mean Inclusivity Ratings (%)')+
+  geom_point(aes(color = Hypothesized_Bias)) +
+  geom_smooth(method = lm, se = FALSE) + labs(fill = "Hypothesized Reading") + theme_bw()
 g3
 ```
+The following code graphs the change in ratings between experiments.
+```{r}
+g4 = ggplot(aes(y = (Implicature_Rate - Mean_Chance), x = ID), data = graph3_data) +
+  geom_col(aes(fill = Hypothesized_Bias)) + 
+  labs(title = 'Change in Means Between Tasks', x = 'Items', y = 'Inclusivity - Compatibility') +
+  theme_bw() + theme(axis.text.x = element_blank())+ labs(fill = "Hypothesized Reading") +
+  geom_hline(yintercept = 9.2, linetype = 2)+
+  geom_hline(yintercept = -9.2, linetype = 2)
+g4
+
+
+```
+
+# The following code creates a combined graph with all four previous graphs.
+```{r}
+gcombined = ggarrange(g, g2, g3, g4, ncol=1, nrow=4, common.legend = TRUE)
+
+gcombined = ggarrange(g, g2, ncol=1, nrow=2, common.legend = TRUE)
+gcombined
+
+gcombined = ggarrange(g3, g4, ncol=1, nrow=2, common.legend = TRUE)
+gcombined
+```
+
+
+```{r}
+summary(lm(Implicature_Rate ~ Mean_Chance, data = graph3_data))
+```
+
 
 
 The following code graphs the means of incompatibility and implicature rates by item
@@ -225,9 +279,20 @@ data$experiment = 0
 
 model3_data = rbind((data %>% select(ID, chance, experiment)), (data_part2%>% select(ID, chance, experiment)))
 
-model_3 = lm(chance ~ ID * experiment, data = model3_data)
-summary(model_3)
+model_4 = lm(chance ~ ID * experiment, data = model3_data, contrasts = list(ID = contr.sum))
+summary(model_4)
 
-
+# Bayesian Version of Model 4 
+model_5 = brm(chance ~ ID * experiment,
+             data = model3_data,
+             family = gaussian,
+             iter = 4000,
+             cores = 4,
+             chains = 4,
+             warmup = 1000,
+             control = list(adapt_delta = 0.99, max_treedepth = 15),
+             seed = 4
+             )
+print(model_5)
 ```
 
