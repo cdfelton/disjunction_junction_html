@@ -185,7 +185,7 @@ accuracy_table_part2 = accuracy_check_part2 %>% group_by(workerid) %>% summarise
 #Join the accuracy table to the rest of the data
 data_part2 = left_join(data_part2, accuracy_table_part2, by = 'workerid')
 
-#Filter out participants who got less than 5/6 correct (Starting with 50, 8 are excluded, leaving 42)
+#Filter out participants who got less than 5/6 correct (Starting with 50, 9 are excluded, leaving 41)
 data_part2 = data_part2 %>% filter(mean_accuracy > .8)
 ```
 
